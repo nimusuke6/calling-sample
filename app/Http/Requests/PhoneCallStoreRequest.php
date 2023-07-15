@@ -17,8 +17,8 @@ class PhoneCallStoreRequest extends FormRequest
         return [
             'user_id' => [
                 'required',
-                'integer'
-            ]
+                'integer',
+            ],
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Enums\PhoneCallStatus;
 use App\Http\Requests\PhoneCallStoreRequest;
 use App\Models\PhoneCall;
@@ -29,14 +28,14 @@ class PhoneCallController extends Controller
                 'caller_user_id' => $caller->id,
                 'receiver_user_id' => $receiver->id,
                 'status' => PhoneCallStatus::WaitingReceiver,
-                'called_at' => CarbonImmutable::now()
+                'called_at' => CarbonImmutable::now(),
             ]);
         });
 
         return response()->json([
             'data' => [
-                'phone_call_id' => $phoneCall->id
-            ]
+                'phone_call_id' => $phoneCall->id,
+            ],
         ], Response::HTTP_CREATED);
     }
 

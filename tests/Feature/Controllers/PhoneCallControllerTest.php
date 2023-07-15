@@ -27,7 +27,7 @@ class PhoneCallControllerTest extends TestCase
 
         // when
         $actual = $this->postJson('/api/phone_calls', [
-            'user_id' => $receiver->id
+            'user_id' => $receiver->id,
         ]);
 
         // then
@@ -36,14 +36,14 @@ class PhoneCallControllerTest extends TestCase
         /** @var PhoneCall $latest */
         $latest = PhoneCall::query()->latest()->first();
         $actual->assertJsonFragment([
-            'phone_call_id' => $latest->id
+            'phone_call_id' => $latest->id,
         ]);
 
         $this->assertDatabaseHas(PhoneCall::class, [
             'caller_user_id' => $me->id,
             'receiver_user_id' => $receiver->id,
             'status' => PhoneCallStatus::WaitingReceiver->value,
-            'called_at' => $now
+            'called_at' => $now,
         ]);
     }
 
@@ -64,7 +64,7 @@ class PhoneCallControllerTest extends TestCase
         $this->assertDatabaseHas(PhoneCall::class, [
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::Canceled->value,
-            'finished_at' => $now
+            'finished_at' => $now,
         ]);
     }
 
@@ -85,7 +85,7 @@ class PhoneCallControllerTest extends TestCase
         $this->assertDatabaseHas(PhoneCall::class, [
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::TalkStarted->value,
-            'talk_started_at' => $now
+            'talk_started_at' => $now,
         ]);
     }
 
@@ -96,7 +96,7 @@ class PhoneCallControllerTest extends TestCase
 
         /** @var PhoneCall $phoneCall */
         $phoneCall = PhoneCall::factory()->create([
-            'talk_started_at' => $now->addMinutes(11)
+            'talk_started_at' => $now->addMinutes(11),
         ]);
 
         // when
@@ -109,7 +109,7 @@ class PhoneCallControllerTest extends TestCase
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::Finished->value,
             'finished_at' => $now,
-            'call_charge' => 100
+            'call_charge' => 100,
         ]);
     }
 }
