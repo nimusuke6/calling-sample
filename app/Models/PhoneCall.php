@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $caller_user_id
  * @property int $receiver_user_id
- * @property string $status
+ * @property PhoneCallStatus $status
  * @property CarbonImmutable $called_at
  * @property ?CarbonImmutable $talk_started_at
  * @property ?CarbonImmutable $finished_at
